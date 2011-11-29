@@ -3,8 +3,10 @@ require 'hampool'
 questions = HamQuestionPool.new(QuestionPoolReader.new(File.open("Technician Class Question Pool.txt"))).test_questions(ARGV).compact
 correct = 0
 missed = []
+count = 0
 questions.shuffle.each do |question|
-  puts "%s - %s" % [question.id, question.question]
+  count += 1
+  puts "(%s of %s) %s - %s" % [count, questions.length, question.id, question.question]
   puts question.answers.join("\n")
   print ">"
 
